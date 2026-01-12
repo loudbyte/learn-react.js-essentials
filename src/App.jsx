@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -38,7 +37,8 @@ const dishObjects = items.map((dish, i) => ({
 
 function Main({ dishes }) {
   return (
-    <React.Fragment>
+    // This is a Fragment, this is sort of like an enclosing tag that doesn't get recorded in the DOM
+    <>
       <div>
         <h2>Welcome to this restaurant</h2>
       </div>
@@ -52,7 +52,7 @@ function Main({ dishes }) {
           ))}
         </ul>
       </main>
-    </React.Fragment>
+    </>
   );
 }
 
