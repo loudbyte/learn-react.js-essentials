@@ -36,12 +36,13 @@ const dishObjects = items.map((dish, i) => ({
   title: dish,
 }));
 
-function Main({ dishes }) {
+function Main({ dishes, openStatus, onStatus }) {
   return (
     // This is a Fragment  <>...</>  , this is sort of like an enclosing tag that doesn't get recorded in the DOM
     <>
       <div>
-        <h2>Welcome to this restaurant</h2>
+        <button onClick={() => onStatus(true)}>I want to be open</button>
+        <h2>Welcome to this restaurant! {openStatus ? "Open" : "Closed"} </h2>
       </div>
       <main>
         <img src={chef} height={200} alt="A photo of a smiling chef owner" />
@@ -77,7 +78,7 @@ function App() {
       <button onClick={() => setStatus(!status)}>
         {status ? "Close" : "Open"} restaurant
       </button>
-      <Main dishes={dishObjects} />
+      <Main dishes={dishObjects} openStatus={status} onStatus={setStatus} />
 
       <Shmeader name="Shmeader" year={new Date().getFullYear()} />
       <main>
