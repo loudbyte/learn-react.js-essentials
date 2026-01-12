@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -37,7 +38,7 @@ const dishObjects = items.map((dish, i) => ({
 
 function Main({ dishes }) {
   return (
-    <div>
+    <React.Fragment>
       <div>
         <h2>Welcome to this restaurant</h2>
       </div>
@@ -51,7 +52,7 @@ function Main({ dishes }) {
           ))}
         </ul>
       </main>
-    </div>
+    </React.Fragment>
   );
 }
 
