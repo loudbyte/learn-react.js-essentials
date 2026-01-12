@@ -37,7 +37,7 @@ const dishObjects = items.map((dish, i) => ({
 
 function Main({ dishes }) {
   return (
-    // This is a Fragment, this is sort of like an enclosing tag that doesn't get recorded in the DOM
+    // This is a Fragment  <>...</>  , this is sort of like an enclosing tag that doesn't get recorded in the DOM
     <>
       <div>
         <h2>Welcome to this restaurant</h2>
