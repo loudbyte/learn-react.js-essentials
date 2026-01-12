@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -57,12 +58,25 @@ function Main({ dishes }) {
 }
 
 function App() {
+  //Example of destructuring array:
+  const [, , third] = ["giraffe", "zebra", "bear"];
+  console.log(third);
+
+  // Recommendation: create your state within, say, the App component
+  // or whatewer the root component is in your application.
+  // And then you can pass these values down as properties to child components.
+  const [status, setStatus] = useState(true);
+
   return (
     //By wrapping both Header and Main and Shmeader in a single parent div or other tag,
     // we ensure that adjacent JSX elements are enclosed in a single parent,
     // which is a requirement in JSX.
     <div>
-      <Header name="Mike" />
+      <Header name="Mike's restaurant" />
+      <h1>The restaurant is currently {status ? "open" : "closed"}.</h1>
+      <button onClick={() => setStatus(!status)}>
+        {status ? "Close" : "Open"} restaurant
+      </button>
       <Main dishes={dishObjects} />
 
       <Shmeader name="Shmeader" year={new Date().getFullYear()} />
