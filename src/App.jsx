@@ -1,0 +1,66 @@
+import "./App.css";
+
+function Header(props) {
+  return (
+    <header>
+      <h1>{props.name}</h1>
+    </header>
+  );
+}
+
+//Destructuring the name and year properties in the function parameters
+// is a shorthand syntax that allows you to directly access these properties
+// without the props. prefix.
+// This makes the code cleaner and more readable.
+function Shmeader({ name, year }) {
+  return (
+    <header>
+      <h4>
+        {name} date: {year}
+      </h4>
+    </header>
+  );
+}
+
+const items = [
+  "Mac and Cheese",
+  "Salmon w Potatoes",
+  "Tofy w Veg",
+  "Minestro soup",
+];
+
+const dishObjects = items.map((dish, i) => ({
+  id: i,
+  title: dish,
+}));
+
+function Main({ dishes }) {
+  return (
+    <ul>
+      {dishes.map((dish) => (
+        <li key={dish.id} style={{ listStyleType: "none" }}>
+          {dish.title}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  return (
+    //By wrapping both Header and Main and Shmeader in a single parent div or other tag,
+    // we ensure that adjacent JSX elements are enclosed in a single parent,
+    // which is a requirement in JSX.
+    <div>
+      <Header name="Mike" />
+      <Main dishes={dishObjects} />
+
+      <Shmeader name="Shmeader" year={new Date().getFullYear()} />
+      <main>
+        <h5>We serve delicious food</h5>
+      </main>
+    </div>
+  );
+}
+
+export default App;
