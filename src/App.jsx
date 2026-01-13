@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -71,6 +71,11 @@ function App() {
   // const [status, setStatus] = useState(true);
 
   const [status, toggle] = useReducer((status) => !status, true);
+
+  useEffect(() => {
+    console.log(`The restaurant is ${status ? "open" : "closed"}`);
+  }, [status]);
+  // console.log will called every time the value in array is changed
 
   return (
     //By wrapping both Header and Main and Shmeader in a single parent div or other tag,
