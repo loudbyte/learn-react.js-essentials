@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -41,7 +41,9 @@ function Main({ dishes, openStatus, onStatus }) {
     // This is a Fragment  <>...</>  , this is sort of like an enclosing tag that doesn't get recorded in the DOM
     <>
       <div>
-        <button onClick={() => onStatus(true)}>I want to be open</button>
+        <button onClick={onStatus}>
+          I want to be {openStatus ? "closed" : "open"}
+        </button>
         <h2>Welcome to this restaurant! {openStatus ? "Open" : "Closed"} </h2>
       </div>
       <main>
@@ -66,7 +68,9 @@ function App() {
   // Recommendation: create your state within, say, the App component
   // or whatewer the root component is in your application.
   // And then you can pass these values down as properties to child components.
-  const [status, setStatus] = useState(true);
+  // const [status, setStatus] = useState(true);
+
+  const [status, toggle] = useReducer((status) => !status, true);
 
   return (
     //By wrapping both Header and Main and Shmeader in a single parent div or other tag,
@@ -75,10 +79,8 @@ function App() {
     <div>
       <Header name="Mike's restaurant" />
       <h1>The restaurant is currently {status ? "open" : "closed"}.</h1>
-      <button onClick={() => setStatus(!status)}>
-        {status ? "Close" : "Open"} restaurant
-      </button>
-      <Main dishes={dishObjects} openStatus={status} onStatus={setStatus} />
+      <button onClick={toggle}>{status ? "Close" : "Open"} restaurant</button>
+      <Main dishes={dishObjects} openStatus={status} onStatus={toggle} />
 
       <Shmeader name="Shmeader" year={new Date().getFullYear()} />
       <main>
